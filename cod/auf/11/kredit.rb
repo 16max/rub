@@ -1,11 +1,21 @@
 class Kredit
 	attr_accessor :kredit
-	attr_reader :kunde
+	attr_writer :jahresgehalt
 
 	def initialize(kundendaten)
 		@kunde = kundendaten
 	end
-	def kreditdaten
-		puts "#{@kunde} Jahresgehalt: 24000 Euro Kredit: #{@kredit} Euro"
+	def kundendaten
+		"#{@kunde} Jahresgehalt: #{@jahresgehalt} Euro Kredit: #{@kredit} Euro"
+	end
+	def kreditvergabe
+		if @jahresgehalt >= 6 * @kredit
+			"Der Kredit in Höhe von #{@kredit} kann gewährt werden"
+		else
+			"Der Kredit kann leider, auf Grund eines zu geringen Einkommens, nicht gewährt werden."
+		end
+	end
+	def abzahlung(monate)
+		"Bei einer Rückzahlung des Kredits von #{@kredit} € innerhalb von #{monate} Monaten ist pro Monat eine Zahlung von #{@kredit / monate} € notwendig."
 	end
 end

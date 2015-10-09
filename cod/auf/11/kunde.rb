@@ -7,6 +7,6 @@ class Kunde
 		@name = name
 	end
 	def kundendaten
-		puts "#{@name.split.first.capitalize} #{@name.split.last.capitalize}, #{@adresse}"
+		"#{@name.split.first.capitalize} #{@name.split.last.capitalize}, #{@adresse}"
 	end
 end
