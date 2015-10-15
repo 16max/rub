@@ -1,13 +1,13 @@
 class Kredit
 	attr_accessor :kredit
-	attr_writer :jahresgehalt
+	attr_writer :jahresgehalt 
 
 	def initialize(kundendaten)
 		@kunde = kundendaten
 	end
-	def kundendaten
-		"#{@kunde} Jahresgehalt: #{@jahresgehalt} Euro Kredit: #{@kredit} Euro"
-	end
+	 def kundendaten
+	 	"#{@kunde} Jahresgehalt: #{@jahresgehalt} € Kredit: #{@kredit} €"
+	 end
 	def kreditvergabe
 		if @jahresgehalt >= 6 * @kredit
 			"Der Kredit in Höhe von #{@kredit} kann gewährt werden"

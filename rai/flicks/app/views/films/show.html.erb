@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titel:</strong>
+  <%= @film.titel %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @film.rank %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @film.video_link %>
+</p>
+
+<%= link_to 'Edit', edit_film_path(@film) %> |
+<%= link_to 'Back', films_path %>
