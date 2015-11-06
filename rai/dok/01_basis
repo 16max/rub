@@ -1,0 +1,10 @@
+Neues Projekt anlegen
+	cd projekt_verzeichnis
+	rails new projekt_name
+	cd projekt_name
+
+Server starten
+	rails server
+
+Projekt anschauen
+	localhost:3000
