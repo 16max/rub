@@ -8,3 +8,20 @@ Server starten
 
 Projekt anschauen
 	localhost:3000
+
+Ordnerstruktur
+	app
+		# hier liegen die entscheidenden Dateien
+		# die Unterordner nach dem MVC-Prinzip (ModelViewController: die Datenhaltung ist von der Logik und von der Darstellungsebene möglichst strikt zu trennen)
+		models
+			# Klassen für die Tabellen
+		controllers
+			# Klassen für die Logik und Abwicklung eines 'request' (Anfrage)
+		views
+			# Unterordner mit den Dateien der Darstellung
+
+	config
+		# 
+
+	db
+		# 
