@@ -1,0 +1,21 @@
+Auf der Bash des Betriebssystems können folgende Befehle ausgeführt werden:
+
+rails new programm_name
+	# erstellt ein neues Projekt
+
+rails generate ...
+... controller name
+	# legt einen Controller, d.h. eine Datei mit dem Namen name.rb im Verzeichnis app/controller an, mit einer Klasse mit dem Namen NameController
+	# zusätzlich wird im Ordner app/view ein verzeichnis name angelegt
+
+rails destroy ...
+... controller name
+
+rails generate model tabellen_name name:string location:string price:decimal
+	# im Projekt wird eine Klasse tabellen_name angelegt in der Datei app/models/tabellen_name.rb
+	# im Ordner db/migrate wird eine Migration-Datei angelegt, die die Befehle zum Erstellen einer Tabelle in der Datenbank enthält
+
+rails server
+	# Startet einen Webserver, welcher auf dem Port:3000 lauscht
+rails server -p3001
+	# Portänderung
