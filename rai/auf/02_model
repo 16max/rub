@@ -1,0 +1,36 @@
+# Erzeugen Sie eine Migration für das model movie mit den Spalten: title:string rating:string total_gross:decimal
+rails generate model movie titel:string rating:string total_gross:decimal
+
+# Überprüfen Sie die change-Methode der Migration
+
+# Erzeugen Sie die Tabelle ,movies' mit dem rake-Command
+rake db:migrate
+
+# Erstellen Sie mit Hilfe der Console 3 movies:
+superman, ironman, spiderman mit einer Bewertung und einem geschätzten Umsatz
+rails console
+Movie.create(titel: "Superman", rating: "gut", total_gross: 1000000.00)
+Movie.create(titel: "Ironman", rating: "kenn ich nicht", total_gross: 500000.00)
+Movie.create(titel: "Spiderman", rating: "gut", total_gross: 3000000.00)
+
+# Ändern Sie den Controller und die View, sodass die Datenaus der Datenbank geladen werden.
+Im movie_controller:
+	def index
+		@movies = Movie.all
+	end
+
+In der index.html.erb:
+	<table>
+		<tr>
+			<th>Titel</th>
+			<th>Rating</th>
+			<th>Umsatz</th>
+		</tr>
+		<% @movies.each do |movie| %>
+		<tr>
+			<td><%= movie.titel %></td>
+			<td><%= movie.rating %></td>
+			<td><%= movie.total_gross %></td>
+		</tr>
+		<% end %>
+	</table>

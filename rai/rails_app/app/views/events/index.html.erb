@@ -1,10 +1,24 @@
 <h1>Events</h1>
 <h2>Meine erste rails_app, erstellt am: <span class="frame"><%= Time.now %></span></h2>
 <%= "<h2>Meine erste rails_app, erstellt am: <span class='frame'> Time.now </span></h2>".html_safe %>
-<p>
-	<ul>
-		<%	@events.each do |event| %>
-			<li><%= event %></li>
+<p>Es gibt <%= @events.size %> Events:
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Ort</th>
+		<th>Preis</th>
+		<th>Beginn</th>
+		<th>Beschreibung</th>
+	</tr>
+		<% @events.each do |event| %>
+			<tr>
+				<td><%= event.name %></td>
+				<td><%= event.location %></td>
+				<td><%= number_to_currency(event.price, unit: "€ ") %></td>
+				<td><%= event.start_at %></td>
+				<td><%= event.desciption %></td>
+			</tr>
 		<% end %>
-	</ul>
+	</tr>
+</table>
 </p>
