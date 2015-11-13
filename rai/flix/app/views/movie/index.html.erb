@@ -1,4 +1,4 @@
-<h1>Movies</h1>
+<h1><%= ein_mehrzahl %></h1>
 <table>
 	<tr>
 		<th>Titel</th>
@@ -11,9 +11,9 @@
 	<tr>
 		<td><%= movie.titel %></td>
 		<td><%= movie.rating %></td>
-		<td><%= event.total_gross.zero? ? "FREE" : number_to_currency(movie.total_gross, unit: "€ ") %></td>
+		<td><%= top_or_flop(movie) %></td>
 		<td><%= movie.release %></td>
-		<td><%= truncate(movie.description, length: 10, seperator: "") %></td>
+		<td><%= text_verkürzt(movie) %></td>
 	</tr>
 	<% end %>
 </table>

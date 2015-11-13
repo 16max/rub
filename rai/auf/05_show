@@ -1,0 +1,13 @@
+# Aufgabe:
+
+# Erstellen Sie die Möglichkeit über den Aufruf: localhost/movies/1 eine Detailansicht des Movies zu sehen.
+	in config/routes.rb
+		get '/movie/:id' => 'movie#show'
+
+	in app/controllers/movie_controller
+		def show
+			@movie = Movie.find(params[:id])
+		end
+
+	Datei 'show.html.erb' in app/views/movie erstellen
+		<%= @movie.titel %>
