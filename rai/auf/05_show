@@ -11,3 +11,5 @@
 
 	Datei 'show.html.erb' in app/views/movie erstellen
 		<%= @movie.titel %>
+
+# Verlinken Sie die APP: von der Index-Seite zur Show und zurück.

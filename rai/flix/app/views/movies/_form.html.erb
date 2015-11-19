@@ -1,0 +1,25 @@
+<%= form_for(@movie) do |f| %>
+	<p>
+		<%= f.label :titel %>
+		<%= f.text_field :titel %>
+	</p>
+	<p>
+		<%= f.label :rating %>
+		<%= f.text_field :rating %>
+	</p>
+	<p>
+		<%= f.label :total_gross %>
+		<%= f.number_field :total_gross %>
+	</p>
+	<p>
+		<%= f.label :release %>
+		<%= f.datetime_select :release %>
+	</p>
+	<p>
+		<%= f.label :description %>
+		<%= f.text_field :description %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

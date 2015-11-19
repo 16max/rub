@@ -1,0 +1,7 @@
+<h1><%= @movie.titel %></h1>
+<p>Bewertung: <%= @movie.rating %></p>
+<p>Einnahmen: <%= top_or_flop(@movie) %></p>
+<p>Release: <%= @movie.release %></p>
+<p>Beschreibung: <%= text_verkürzt(@movie) %></p>
+
+<p><%= link_to "Zurück", movies_path %></p>

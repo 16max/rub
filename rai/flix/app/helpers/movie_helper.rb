@@ -8,7 +8,7 @@ module MovieHelper
 		end
 
 		def top_or_flop(movie)
-			if movie.total_gross < 50000000
+			if movie.free?
 				"Flop!"
 			else
 				number_to_currency(movie.total_gross, unit: "€ ")
@@ -16,6 +16,6 @@ module MovieHelper
 		end
 
 		def text_verkürzt(movie)
-			truncate(movie.description, length: 40, seperator: "")
+			truncate(movie.description, length: 40, seperator: "", omission: "")
 		end
 end
