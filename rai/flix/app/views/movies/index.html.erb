@@ -1,6 +1,6 @@
 <!-- <h1><%= ein_mehrzahl %></h1> -->
 <h1><%= "Es #{pluralize(@movies.count, "Movie")} vorhanden" %></h1>
-<%= link_to "Neues Event erstellen", new_movie_path %>
+<%= link_to "Neuen Film einstellen", new_movie_path %>
 <table>
 	<tr>
 		<th>Titel</th>
@@ -21,7 +21,7 @@
 		<td><%= text_verkürzt(movie) %></td>
 		<td><%= link_to "Details", movie_path(movie.id) %></td>
 		<td><%= link_to "Bearbeiten", edit_movie_path(movie.id) %></td>
-		<td><%= link_to "Löschen", movie_path(movie.id), method: :delete, data: {confirm: "Sicher"}%></td>
+		<td><%= link_to "Löschen", movie_path(movie.id), method: :delete, data: {confirm: "Sicher"} %></td>
 	</tr>
 	<% end %>
 </table>

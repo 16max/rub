@@ -1,7 +1,40 @@
 <h1><%= @movie.titel %></h1>
-<p>Bewertung: <%= @movie.rating %></p>
-<p>Einnahmen: <%= top_or_flop(@movie) %></p>
-<p>Release: <%= @movie.release %></p>
-<p>Beschreibung: <%= text_verkürzt(@movie) %></p>
+<div class="panel">
+	<div class="row">
+		<div class="medium-2 columns">
+			Bewertung:
+		</div>
+		<div class="medium-10 columns">
+			<%= @movie.rating %>
+		</div>
+	</div>
 
-<p><%= link_to "Zurück", movies_path %></p>
+	<div class="row">
+		<div class="medium-2 columns">
+			Einnahmen:
+		</div>
+		<div class="medium-10 columns">
+			<%= top_or_flop(@movie) %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			Release:
+		</div>
+		<div class="medium-10 columns">
+			<%= @movie.release %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			Beschreibung:
+		</div>
+		<div class="medium-10 columns">
+			<%= text_verkürzt(@movie) %>
+		</div>
+	</div>
+</div>
+
+<p><%= link_to "Zurück", movies_path, :class => "button round" %></p>

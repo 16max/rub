@@ -1,25 +1,55 @@
 <%= form_for(@movie) do |f| %>
-	<p>
-		<%= f.label :titel %>
-		<%= f.text_field :titel %>
-	</p>
-	<p>
-		<%= f.label :rating %>
-		<%= f.text_field :rating %>
-	</p>
-	<p>
-		<%= f.label :total_gross %>
-		<%= f.number_field :total_gross %>
-	</p>
-	<p>
-		<%= f.label :release %>
-		<%= f.datetime_select :release %>
-	</p>
-	<p>
-		<%= f.label :description %>
-		<%= f.text_field :description %>
-	</p>
-	<p>
-		<%= f.submit %>
-	</p>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :titel %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :titel %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :rating %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :rating %>
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :total_gross %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.number_field :total_gross %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :release %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.datetime_select :release %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :description %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :description %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.submit %>
+		</div>
+		<div class="medium-10 columns">
+			
+		</div>
+	</div>
 <% end %>
