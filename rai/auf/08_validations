@@ -1,5 +1,7 @@
-#Aufgabe:
+#gruAufgabe:
  #Fügen Sie die Spalten: poster image file, cast, director, duration hinzu und integrieren SIe diese in die App.
+rails generate migration AddMehrinfosToMovies poster_image_file:string cast:string director:string duration:integer
+rake db:migrate
 
 #Aufgaben:
 #Die Felder title, released_on, and duration von Movie müssen eingegeben sein.

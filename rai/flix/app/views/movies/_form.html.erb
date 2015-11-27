@@ -1,4 +1,13 @@
 <%= form_for(@movie) do |f| %>
+	<% if @movie.errors.any? %>
+		<div class="panel">
+			<ul>
+				<% @movie.errors.full_messages.each do |error| %>
+					<li><%= error %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<div class="row">
 		<div class="medium-2 columns">
 			<%= f.label :titel %>
@@ -41,6 +50,42 @@
 		</div>
 		<div class="medium-10 columns">
 			<%= f.text_field :description %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :poster_image_file %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :poster_image_file %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :cast %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :cast %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :director %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :director %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :duration %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :duration %>
 		</div>
 	</div>
 
