@@ -1,4 +1,4 @@
-<h1>kommende Events</h1>
+<h1>alle Events</h1>
 <h2>Meine erste rails_app, erstellt am: <span class="frame"><%= Time.now %></span></h2>
 <%= "<h2>Meine erste rails_app, erstellt am: <span class='frame'> #{Time.now} </span></h2>".html_safe %>
 <p><%= link_to "neues Event erstellen", new_event_path %></p>
@@ -28,6 +28,3 @@
 		<% end %>
 	</tr>
 </table>
-<p>
-	<%= link_to "alle Events", showall_events_path, :class => "button success" %>
-</p>
