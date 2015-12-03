@@ -1,0 +1,19 @@
+<h1><%= einzahl_mehrzahl %></h1>
+<table border="black">
+	<tr>
+		<th>Name</th>
+		<th>Beschreibung</th>
+		<th>Geld</th>
+		<th>Webseite</th>
+		<th>Projektende</th>
+	</tr>
+	<% @projects.each do |p| %>
+	<tr>
+		<td><%= p.name %></td>
+		<td><%= truncate(p.description, length: 150) %></td>
+		<td><%= number_to_currency(p.target_pledge_amount, unit: "€") %></td>
+		<td><%= p.website %></td>
+		<td><%= p.pledging_ends_on %></td>
+	</tr>
+	<% end %>
+</table>

@@ -12,7 +12,7 @@ class Movie < ActiveRecord::Base
 	# 	validates_format_of :poster_image_file, :with => /png\z/
 	# end
 	#validates_format_of :poster_image_file, with: /jpg\z/
-	validates_format_of :poster_image_file, :with =>  lambda { |p| p.end_with?("png") || p.end_with?("jpg") ? /png\z/ : "bla" }
+	#validates_format_of :poster_image_file, :with =>  lambda { |p| p.end_with?("png") || p.end_with?("jpg") ? /png\z/ : "bla" }
 	# @array = []
 	# @array = ["/gif\\z/", "/jpg\z/", "/png\z/"]
 	#@array.each do |a|
