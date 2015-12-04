@@ -25,5 +25,5 @@ class Movie < ActiveRecord::Base
 
 	def self.upcoming
 			where("release < ?", Time.now).order("release")
-		end
+	end
 end
