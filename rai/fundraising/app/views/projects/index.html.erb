@@ -6,6 +6,7 @@
 		<th>Geld</th>
 		<th>Webseite</th>
 		<th>Projektende</th>
+		<th>verbleibende Tage</th>
 	</tr>
 	<% @projects.each do |p| %>
 	<tr>
@@ -14,6 +15,7 @@
 		<td><%= number_to_currency(p.target_pledge_amount, unit: "€") %></td>
 		<td><%= p.website %></td>
 		<td><%= p.pledging_ends_on %></td>
+		<td><%= pro(p.pledging_ends_on) %></td>
 	</tr>
 	<% end %>
 </table>
