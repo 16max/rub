@@ -1,0 +1,15 @@
+Verknüpfung von Tabellen:
+Tabellen können über eine Verknüpfung von "Primary-Key" ( events-Tabelle ) zum "Foreign-Key" ( registrations-Tabelle:: event_id ) erstellt werden.
+
+Vorraussetzungen::
+	a. Foreign-Key muss in der abhängigen Tabelle vorhanden sein
+	b. models/event.rb
+		has_many :registrations
+	c. models/registration.rb
+		belongs_to :event
+
+Wenn es diese Verknüpfung gibt, bildet Rails die zusätzlichen Methoden::
+	r = Registration.first
+	e = Event.find(r.event_id)
+	r.event 					# zeigt den Event zur Registration
+	e.registrations 	# zeigt die Registrierungen des Event an

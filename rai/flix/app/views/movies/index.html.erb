@@ -1,6 +1,7 @@
 <!-- <h1><%= ein_mehrzahl %></h1> -->
 <h1><%= "Es #{pluralize(@movies.count, "Movie")} vorhanden" %></h1>
-<%= link_to "Neuen Film einstellen", new_movie_path %>
+<%= link_to "Neuen Film einstellen", new_movie_path %></br>
+<span class="label"><%= flash[:notice] %></span>
 <table>
 	<tr>
 		<th>Titel</th>

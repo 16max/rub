@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 	def create
 		@event = Event.new(event_params)
 		if @event.save
+			flash[:notice] = "krasse Sache!"
 			redirect_to event_path(@event.id)
 		else
 			render "new"
@@ -30,8 +31,11 @@ class EventsController < ApplicationController
 
 	def update
 		@event = Event.find(params[:id])
-		@event.update(event_params)
-		redirect_to event_path(@event.id)
+		if @event.update(event_params)
+			redirect_to event_path(@event.id)
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy

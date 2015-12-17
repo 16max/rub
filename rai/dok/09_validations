@@ -1,0 +1,9 @@
+Unter Validations versteht man in Rails die Überprüfung eines Formulares auf :
+	Anwesenheit
+	Richtigkeit des Eintrags ( E-Mail, Datum )
+
+Eine Validation wird im Modell definiert.
+Bsp::
+	models/event.rb
+		validates :name, presence: true
+	# solbald ein Speichervorgang in der Datenbank initiiert wird, wird überprüft ob für die Spalte Name ein Wert gesetzt wird. Falls keiner vorhanden ist wird der Speichervorgang abgebrochen und ein Fehler zurückgegeben.
