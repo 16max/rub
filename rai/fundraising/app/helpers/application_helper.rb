@@ -15,7 +15,7 @@ module ApplicationHelper
           when 10..19 then 'Endet in weniger als 20 Sekunden'
           when 20..39 then 'Endet in einer halben Minute'
           when 40..59 then 'Endet in weniger als einer Minute'
-          else             'Endet in 1 Minute'
+          else             'Endet in e1 Minute'
         end
  
       when 2..44           then "Endet in #{distance_in_minutes} Minuten"
