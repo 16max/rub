@@ -1,0 +1,21 @@
+<h1>Reviews für <%= @movie.titel %></h1>
+<% if @reviews.count <= 1 %>
+	<p><span class="label">Bis jetzt keine Reviews!</span></p>
+<% else %>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Sterne</th>
+		<th>Kommentar</th>
+	</tr>
+<% @reviews.each do |review| %>
+	<tr>
+		<td><%= review.name %></td>
+		<td><%= review.stars %></td>
+		<td><%= review.commit %></td>
+	</tr>
+<% end %>
+</table>
+<% end %>
+
+<p><%= link_to "Back", movies_path, :class => "button round" %></p>

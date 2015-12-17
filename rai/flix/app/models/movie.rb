@@ -1,4 +1,6 @@
 class Movie < ActiveRecord::Base
+	has_many :reviews
+
 	validates_presence_of :titel, :release, :duration, :message => "muss ausgefüllt sein"
 	validates_length_of :description, :minimum => 25, allow_blank: true, :message => "ist zu kurz. Die Mindestlänge beträgt 25 Zeichen."
 	validates_numericality_of :total_gross, numericality: { only_integer: true }, :greater_than => 0, :message => "ist Null oder keine Zahl."
