@@ -1,13 +1,5 @@
 <%= form_for(@event) do |f| %>
-	<% if @event.errors.any? %>
-		<div class="panel">
-			<ul>
-				<% @event.errors.full_messages.each do |error| %>
-					<li><%= error %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+<%= render "shared/errors", objekt_errors: @event %>
 	<div class="row">
 		<div class="medium-2 columns">
 			<%= f.label :name %>

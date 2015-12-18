@@ -3,10 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .flash {
-	color: darkred;
 	text-align: center;
+}
+.alert {
+	color: darkred;
 	background-color: lightcoral;
 }
+.notice {
+	color: orange;
+	background-color: darkgreen;
+}
+
+.big-btn {
+	width: 250px;
+}
+
 
 /*
 h1 {
