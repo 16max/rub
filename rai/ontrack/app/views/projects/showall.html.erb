@@ -1,0 +1,23 @@
+<table width=100%>
+	<tr>
+		<th>no.</th>
+		<th>title</th>
+		<th>description</th>
+		<th>start</th>
+		<th>edit</th>
+		<th>delete</th>
+	</tr>
+	<tr>
+		<% while @i <= @projects.count(:id) do %>
+			<% @projects.each do |a| %>
+				<td><%= @i %></td>
+				<td><%= a.title %></td>
+				<td><%= a.description %></td>
+				<td><%= a.start_date %></td>
+				<td><%= link_to "edit" , edit_project_path(a.id) %></td>
+				<td><%= link_to "delete", project_path(a.id), method: :delete, data: {confirm: "Sicher?"} %></td>
+		<% @i += 1 %>
+	</tr>
+			<% end %>
+		<% end %>
+</table>
