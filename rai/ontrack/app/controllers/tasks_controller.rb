@@ -5,6 +5,15 @@ class TasksController < ApplicationController
     @tasks = @project.tasks
   end
 
+  def show
+    @task = @project.tasks.find(params[:id])
+  end
+
+  def showall
+    @tasks = Project.Tasks.all
+    @i = 1
+  end
+
   def new
     @task = @project.tasks.new
   end
@@ -12,14 +21,29 @@ class TasksController < ApplicationController
   def create
     @task = @project.tasks.new(task_params)
     if @task.save
-      redirect_to project_path(@project.id), alert: "Richtig Krass!"
+      redirect_to project_task_path(@project.id, @task.id), alert: "Richtig Krass!"
     else
       render "new"
     end
+  end
 
-    def destroy
-      
+  def update
+    @task = @project.tasks.find(params[:id])
+    if @task.update(task_params)
+      redirect_to project_tasks_path(@project.id)
+    else
+      render 'edit'
     end
+  end
+
+  def edit
+    @task = @project.tasks.find(params[:id])
+  end
+
+  def destroy
+    @task = @project.tasks.find(params[:id])
+    @task.destroy
+    redirect_to project_tasks_path(@project.id)
   end
 
 private

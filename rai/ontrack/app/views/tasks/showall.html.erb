@@ -1,0 +1,25 @@
+<table width=100%>
+	<tr>
+		<th>no.</th>
+		<th>title</th>
+		<th>description</th>
+		<th>start</th>
+		<th>end</th>
+		<th>show</th>
+		<th>edit</th>
+		<th>delete</th>
+	</tr>
+	<tr>
+		<% while @i <= @tasks.count(:id) do %>
+			<% @tasks.each do |t| %>
+				<td><%= @i %></td>
+				<td><%= t.title %></td>
+				<td><%= t.description %></td>
+				<td><%= t.start_date %></td>
+
+				
+		<% @i += 1 %>
+	</tr>
+			<% end %>
+		<% end %>
+</table>

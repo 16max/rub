@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "testi#testi"
   get "all" => "projects#showall"
+  get "all_tasks" => "tasks#showall"
   resources :projects do
     resources :tasks
   end
