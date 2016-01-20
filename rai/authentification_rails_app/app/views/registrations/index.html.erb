@@ -1,0 +1,22 @@
+<h1>Registrierungen für <%= @event.name %></h1>
+
+<table style="width: 100%">
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Über</th>
+		<th>Event</th>
+		<th>Löschen</th>
+	</tr>
+<% @registrations.each do |registration| %>
+	<tr>
+		<td><%= registration.name %></td>
+		<td><%= registration.email %></td>
+		<td><%= registration.how_heard %></td>
+		<td><%= registration.event_id %></td>
+		<td></td>
+	</tr>
+<% end %>
+</table>
+
+<p><%= link_to "Back", event_path(@event.id) %></p>

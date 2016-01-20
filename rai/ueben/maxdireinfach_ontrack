@@ -1,0 +1,474 @@
+#/bin/bash
+
+read -p "application name: " application_name
+
+controller_projects="
+class ProjectsController < ApplicationController\n
+def index\n
+end\n
+def show\n
+@project = Project.find(params[:id])\n
+end\n
+def showall\n
+@projects = Project.all\n
+@i = 1\n
+end\n
+def new\n
+@project = Project.new\n
+end\n
+def create\n
+@project = Project.new(params_project)\n
+if @project.save\n
+flash[:notice] = 'project created'\n
+redirect_to project_path(@project.id)\n
+else\n
+render 'new'\n
+end\n
+end\n
+def update\n
+@project = Project.find(params[:id])\n
+if @project.update(params_project)\n
+redirect_to project_path(@project.id)\n
+else\n
+render 'edit'\n
+end\n
+end\n
+def edit\n
+@project = Project.find(params[:id])\n
+end\n
+def destroy\n
+@project = Project.find(params[:id])\n
+@project.destroy\n
+redirect_to all_path\n
+end\n
+private\n
+def params_project\n
+permitted_params = params.require(:project).permit(:title, :description, :start_date)\n
+end\n
+end"
+controller_tasks="
+class TasksController < ApplicationController\n
+before_action :set_project\n
+def index\n
+@tasks = @project.tasks\n
+end\n
+def show\n
+@task = @project.tasks.find(params[:id])\n
+end\n
+def new\n
+@task = @project.tasks.new\n
+end\n
+def create\n
+@task = @project.tasks.new(task_params)\n
+if @task.save\n
+redirect_to project_task_path(@project.id, @task.id), alert: 'tasks created'\n
+else\n
+render 'new'\n
+end\n
+end\n
+def update\n
+@task = @project.tasks.find(params[:id])\n
+if @task.update(task_params)\n
+redirect_to project_tasks_path(@project.id)\n
+else\n
+render 'edit'\n
+end\n
+end\n
+def edit\n
+@task = @project.tasks.find(params[:id])\n
+end\n
+def destroy\n
+@task = @project.tasks.find(params[:id])\n
+@task.destroy\n
+redirect_to project_tasks_path(@project.id)\n
+end\n
+private\n
+def set_project\n
+@project = Project.find(params[:project_id])\n
+end\n
+def task_params\n
+params.require(:task).permit(:title , :description , :start_date , :end_date)\n
+end\n
+end"
+
+end="
+\n\n\n\n\n\n\n
+### your application ${application_name} has been successfully created ###\n
+\n\n\n\n\n\n\n"
+
+foundation="gem 'foundation-rails'\n
+group :development do\n
+  gem 'rails_layout'\n
+end"
+
+migration_projects="
+class CreateProjects < ActiveRecord::Migration\n
+def change\n
+create_table :projects do |t|\n
+t.string :title\n
+t.text :description\n
+t.datetime :start_date\n
+t.timestamps null: false\n
+end\n
+end\n
+end"
+migration_tasks="
+class CreateTasks < ActiveRecord::Migration\n
+def change\n
+create_table :tasks do |t|\n
+t.string :title\n
+t.text :description\n
+t.datetime :start_date\n
+t.datetime :end_date\n
+t.integer :project_id\n
+t.references :project, index: true, foreign_key: true\n
+t.timestamps null: false\n
+end\n
+end\n
+end"
+
+models_project="
+class Project < ActiveRecord::Base\n
+has_many :tasks, dependent: :destroy\n
+validates :title , :start_date , presence: { message: 'can not be blank' }\n
+validates :description , length: { minimum: 25 }\n
+end"
+models_task="
+class Task < ActiveRecord::Base\n
+belongs_to :project\n
+end"
+
+routes="Rails.application.routes.draw do\n
+root 'projects#index'\n
+get 'all' => 'projects#showall'\n
+get 'all_tasks' => 'tasks#showall'\n
+resources :projects do\n
+resources :tasks\n
+end\n
+get '*path' => 'projects#dne'\n
+end"
+
+views_layouts_application="
+<!DOCTYPE html>\n
+<html>\n
+<head>\n
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n
+<title><%= content_for?(:title) ? yield(:title) : 'maxdireinfach::' %></title>\n
+<meta name='description' content='<%= content_for?(:description) ? yield(:description) : '${application_name}' %>'>\n
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>\n
+<%# Modernizr is required for Zurb Foundation %>\n
+<%= javascript_include_tag 'vendor/modernizr' %>\n
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>\n
+<%= csrf_meta_tags %>\n
+</head>\n
+<body>\n
+<header>\n
+<%= render 'layouts/navigation' %>\n
+</header>\n
+<main role='main'>\n
+<%= render 'layouts/messages' %>\n
+<%= yield %>\n
+</main>\n
+</body>\n
+</html>"
+views_layouts_messages="
+<%# Rails flash messages styled for Zurb Foundation %>\n
+<% flash.each do |name, msg| %>\n
+<% if msg.is_a?(String) %>\n
+<div data-alert class='alert-box <%= name.to_s == 'notice' ? 'success' : 'alert' %>'>\n
+<%= content_tag :div, msg %>\n
+<a href='#' class='close'>&times; </a>\n
+</div>\n
+<% end %>\n
+<% end %>"
+views_layouts_navigation="
+<%# navigation styled for Zurb Foundation 5 %>\n
+<nav class='top-bar' data-topbar>\n
+<ul class='title-area'>\n
+<li class='name'> <%= link_to 'start' , root_path %> </li>\n
+<li class='toggle-topbar menu-icon'> <a href='#'> menu </a> </li>\n
+</ul>\n
+<div class='top-bar-section'>\n
+<ul>\n
+<%= render 'layouts/navigation_links' %>\n
+</ul>\n
+</div>\n
+</nav>"
+views_layouts_navigation_links="
+<%# add navigation links to this file %>\n
+<li class='name'> <%= link_to 'projects' , all_path %> </li>\n
+<li class='name'> <%= link_to 'new_project' , new_project_path %> </li>"
+
+views_projects_dne="
+<%= link_to 'this path does not exist (back to start)' , projects_path , :class => 'button alert' %>"
+views_projects_edit="
+<h1> project: <%= @project.title %> edit </h1>\n
+<%= render 'form' %>"
+views_projects_form="
+<%= form_for(@project) do |f| %>\n
+<%= render 'shared/errors', objekt_errors: @project %>\n
+<div class='row'>\n
+<div class='medium-2 columns'>\n
+<%= f.label :title %>\n
+</div>\n
+<div class='medium-10 columns'>\n
+<%= f.text_field :title %>\n
+</div>\n
+</div>\n
+<div class='row'>\n
+<div class='medium-2 columns'>\n
+<%= f.label :description %>\n
+</div>\n
+<div class='medium-10 columns'>\n
+<%= f.text_field :description %>\n
+</div>\n
+</div>\n
+<div class='row'>\n
+<div class='medium-2 columns'>\n
+<%= f.label :start_date %>\n
+</div>\n
+<div class='medium-10 columns'>\n
+<%= f.datetime_select :start_date %>\n
+</div>\n
+</div>\n
+<div class='row'>\n
+<div class='medium-2 columns'>\n
+<%= f.submit %>\n
+</div>\n
+<div class='medium-10 columns'>\n
+<%= link_to 'back', projects_path , :class => 'button' %>\n
+</div>\n
+</div>\n
+<% end %>"
+views_projects_index="
+<h1>maxdireinfach created successfully your application <u>${application_name}</u></h1>"
+views_projects_new="
+<h1>create new project</h1>\n
+<%= render 'form' %>"
+views_projects_show="
+<h1> <%= @project.title %> </h1>\n
+<div class='panel'>\n
+<div class='row'>\n
+<div class='medium-9 columns'>\n
+<%= @project.description %>\n
+</div>\n
+</div>\n
+</div>\n
+<div class='panel'>\n
+<div class='row'>\n
+<div class='medium-2 columns'>\n
+when?\n
+</div>\n
+<div class='medium-10 columns'>\n
+<%= @project.start_date %>\n
+</div>\n
+</div>\n
+</div>\n
+<br />\n
+<%= link_to 'show tasks', project_tasks_path(@project.id) , :class => 'button' %>\n
+<%= link_to 'back', all_path , :class => 'button' %>"
+views_projects_showall="
+<table width=100%>\n
+<tr>\n
+<th> no. </th>\n
+<th> id </th>\n
+<th> title </th>\n
+<th> description </th>\n
+<th> start </th>\n
+<th> show </th>\n
+<th> edit </th>\n
+<th> delete </th>\n
+</tr>\n
+<tr>\n
+<% while @i <= @projects.count(:id) do %>\n
+<% @projects.each do |p| %>\n
+<td> <%= @i %> </td>\n
+<td> <%= p.id %> </td>\n
+<td> <%= p.title %> </td>\n
+<td> <%= p.description %> </td>\n
+<td> <%= p.start_date %> </td>\n
+<td> <%= link_to 'show' , project_path(p.id) %> </td>\n
+<td> <%= link_to 'edit' , edit_project_path(p.id) %> </td>\n
+<td> <%= link_to 'delete' , project_path(p.id) , method: :delete , data: {confirm: 'sure?'} %> </td>\n
+<% @i += 1 %>\n
+</tr>\n
+<% end %>\n
+<% end %>\n
+</table>"
+
+views_shared_errors="
+<% if objekt_errors.errors.any? %>\n
+<div class='panel'>\n
+<ul>\n
+<% objekt_errors.errors.full_messages.each do |error| %>\n
+<li><%= error %></li>\n
+<% end %>\n
+</ul>\n
+</div>\n
+<% end %>"
+
+views_tasks_edit="
+<h1> editing task </h1>\n
+<%= render 'form' %>\n
+<%= link_to 'show tasks' , project_tasks_path(@project.id) , :class => 'button' %>"
+views_tasks_form="
+<%= form_for([@project, @task]) do |f| %>\n
+<% if @task.errors.any? %>\n
+<div id='error_explanation'>\n
+<h2> <%= pluralize(@task.errors.count , 'error') %> prohibited this task from being saved: </h2>\n
+<ul>\n
+<% @task.errors.full_messages.each do |message| %>\n
+<li> <%= message %> </li>\n
+<% end %>\n
+</ul>\n
+</div>\n
+<% end %>\n
+<div class='field'>\n
+<%= f.label :title %> <br />\n
+<%= f.text_field :title %>\n
+</div>\n
+<div class='field'>\n
+<%= f.label :description %> <br />\n
+<%= f.text_area :description %>\n
+</div>\n
+<div class='field'>\n
+<%= f.label :start_date %> <br />\n
+<%= f.datetime_select :start_date %>\n
+</div>\n
+<div class='field'>\n
+<%= f.label :end_date %> <br />\n
+<%= f.datetime_select :end_date %>\n
+</div>\n
+<div class='field'>\n
+<%= f.label :project_id %> <br />\n
+<%= f.number_field :project_id %>\n
+</div>\n
+<div class='actions'>\n
+<%= f.submit %>\n
+</div>\n
+<div class='medium-10 columns'>\n
+<%= link_to 'back', projects_path , :class => 'button' %>\n
+</div>\n
+<% end %>"
+views_tasks_index="
+<p id='notice'> <%= notice %> </p>\n
+<h1> tasks </h1>\n
+<table>\n
+<thead>\n
+<tr>\n
+<th> title </th>\n
+<th> description </th>\n
+<th> start date </th>\n
+<th> end date </th>\n
+<th> project </th>\n
+<th colspan='3'></th>\n
+</tr>\n
+</thead>\n
+<tbody>\n
+<% @tasks.each do |task| %>\n
+<tr>\n
+<td> <%= task.title %> </td>\n
+<td> <%= task.description %> </td>\n
+<td> <%= task.start_date %> </td>\n
+<td> <%= task.end_date %> </td>\n
+<td> <%= task.project_id %> </td>\n
+<td> <%= link_to 'show' , project_task_path(@project.id , task.id) %> </td>\n
+<td> <%= link_to 'Edit', edit_project_task_path(@project.id , task.id) %> </td>\n
+<td> <%= link_to 'Destroy', project_task_path(@project.id , task.id) , method: :delete, data: { confirm: 'Are you sure?' } %> </td>\n
+</tr>\n
+<% end %>\n
+</tbody>\n
+</table>\n
+<br />\n
+<%= link_to 'new task', new_project_task_path , :class => 'button' %>\n
+<%= link_to 'back' , project_path(@project.id) , :class => 'button' %>"
+views_tasks_new="
+<h1> new task </h1>\n
+<%= render 'form' %>\n
+<%= link_to 'back' , project_tasks_path , :class => 'button' %>"
+views_tasks_show="
+<p id='notice'> <%= notice %> </p>\n
+<p>\n
+<strong> title: </strong>\n
+<%= @task.title %>\n
+</p>\n
+<p>\n
+<strong> description: </strong>\n
+<%= @task.description %>\n
+</p>\n
+<p>\n
+<strong> start date: </strong>\n
+<%= @task.start_date %>\n
+</p>\n
+<p>\n
+<strong> end date: </strong>\n
+<%= @task.end_date %>\n
+</p>\n
+<p>\n
+<strong> project: </strong>\n
+<%= @task.project_id %>\n
+</p>\n
+<%= link_to 'back' , project_tasks_path(@project.id) , :class => 'button' %>"
+
+
+
+
+
+rails new "${application_name}"
+cd "${application_name}"
+
+
+echo -e $foundation >> Gemfile
+bundle install
+rails generate layout:install foundation5 --force
+
+
+rails generate controller projects
+rails generate controller tasks
+
+
+echo -e $routes > config/routes.rb
+
+
+mkdir db/migrate
+echo -e $migration_projects > db/migrate/001_create_projects.rb
+echo -e $migration_tasks > db/migrate/002_create_tasks.rb
+rake db:migrate
+
+
+echo -e $controller_projects > app/controllers/projects_controller.rb
+echo -e $controller_tasks > app/controllers/tasks_controller.rb
+
+
+echo -e $models_project > app/models/project.rb
+echo -e $models_task > app/models/task.rb
+
+
+echo -e $views_layouts_application > app/views/layouts/application.html.erb
+echo -e $views_layouts_messages > app/views/layouts/_messages.html.erb
+echo -e $views_layouts_navigation > app/views/layouts/_navigation.html.erb
+echo -e $views_layouts_navigation_links > app/views/layouts/_navigation_links.html.erb
+
+echo -e $views_projects_dne > app/views/projects/dne.html.erb
+echo -e $views_projects_edit > app/views/projects/edit.html.erb
+echo -e $views_projects_form > app/views/projects/_form.html.erb
+echo -e $views_projects_index > app/views/projects/index.html.erb
+echo -e $views_projects_new > app/views/projects/new.html.erb
+echo -e $views_projects_show > app/views/projects/show.html.erb
+echo -e $views_projects_showall > app/views/projects/showall.html.erb
+
+mkdir app/views/shared
+echo -e $views_shared_errors > app/views/shared/_errors.html.erb
+
+echo -e $views_tasks_edit > app/views/tasks/edit.html.erb
+echo -e $views_tasks_form > app/views/tasks/_form.html.erb
+echo -e $views_tasks_index > app/views/tasks/index.html.erb
+echo -e $views_tasks_new > app/views/tasks/new.html.erb
+echo -e $views_tasks_show > app/views/tasks/show.html.erb
+
+
+echo -e $end
+
+
+rails s
+

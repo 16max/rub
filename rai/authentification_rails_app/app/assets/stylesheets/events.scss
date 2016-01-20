@@ -1,0 +1,58 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.flash {
+	text-align: center;
+}
+.alert {
+	color: darkred;
+	background-color: lightcoral;
+}
+.notice {
+	color: orange;
+	background-color: darkgreen;
+}
+
+.big-btn {
+	width: 250px;
+}
+
+
+/*
+h1 {
+	color: red;
+	font-size: 100px;
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+.frame {
+	border: 2px solid;
+}
+
+ul {
+	margin-left: 350px;
+}
+
+table {
+	border: solid black 3px;
+	width: 100%;
+}
+
+th {
+	border: solid black 2px;
+	text-align: left;
+}
+
+td {
+	border: solid black 2px;
+	padding: 5px;
+	max-width:200px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+*/

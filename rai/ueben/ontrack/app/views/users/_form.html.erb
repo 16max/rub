@@ -1,0 +1,35 @@
+<%= form_for(@user) do |f| %>
+ <%= render 'shared/errors', objekt_errors: @user %>
+ <div class='row'>
+ <div class='medium-2 columns'>
+ <%= f.label :email %>
+ </div>
+ <div class='medium-10 columns'>
+ <%= f.text_field :email %>
+ </div>
+ </div>
+ <div class='row'>
+ <div class='medium-2 columns'>
+ <%= f.label :password %>
+ </div>
+ <div class='medium-10 columns'>
+ <%= f.password_field :password %>
+ </div>
+ </div>
+ <div class='row'>
+ <div class='medium-2 columns'>
+ <%= f.label :password_confirmation %>
+ </div>
+ <div class='medium-10 columns'>
+ <%= f.password_field :password_confirmation %>
+ </div>
+ </div>
+ <div class='row'>
+ <div class='medium-2 columns'>
+ <%= f.submit %>
+ </div>
+ <div class='medium-10 columns'>
+ <%= link_to 'back', new_user_path , :class => 'button' %>
+ </div>
+ </div>
+ <% end %>

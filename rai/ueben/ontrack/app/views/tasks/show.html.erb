@@ -1,0 +1,22 @@
+<p id='notice'> <%= notice %> </p>
+ <p>
+ <strong> title: </strong>
+ <%= @task.title %>
+ </p>
+ <p>
+ <strong> description: </strong>
+ <%= @task.description %>
+ </p>
+ <p>
+ <strong> start date: </strong>
+ <%= @task.start_date %>
+ </p>
+ <p>
+ <strong> end date: </strong>
+ <%= @task.end_date %>
+ </p>
+ <p>
+ <strong> project: </strong>
+ <%= @task.project_id %>
+ </p>
+ <%= link_to 'back' , project_tasks_path(@project.id) , :class => 'button' %>

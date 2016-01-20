@@ -1,0 +1,21 @@
+<h1> <%= @project.title %> </h1>
+ <div class='panel'>
+ <div class='row'>
+ <div class='medium-9 columns'>
+ <%= @project.description %>
+ </div>
+ </div>
+ </div>
+ <div class='panel'>
+ <div class='row'>
+ <div class='medium-2 columns'>
+ when?
+ </div>
+ <div class='medium-10 columns'>
+ <%= @project.start_date %>
+ </div>
+ </div>
+ </div>
+ <br />
+ <%= link_to 'show tasks', project_tasks_path(@project.id) , :class => 'button' %>
+ <%= link_to 'back', all_path , :class => 'button' %>

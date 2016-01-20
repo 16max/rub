@@ -1,0 +1,9 @@
+<% if objekt_errors.errors.any? %>
+ <div class='panel'>
+ <ul>
+ <% objekt_errors.errors.full_messages.each do |error| %>
+ <li><%= error %></li>
+ <% end %>
+ </ul>
+ </div>
+ <% end %>

@@ -1,0 +1,67 @@
+<%= form_for(@event) do |f| %>
+<%= render "shared/errors", objekt_errors: @event %>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :name %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :name %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :desciption %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :desciption %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :location %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :location %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :price %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.number_field :price %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :start_at %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.datetime_select :start_at %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :image_file %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.text_field :image_file, placeholder: "Gif, JPG, png Dateiname" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.label :capacity %>
+		</div>
+		<div class="medium-10 columns">
+			<%= f.number_field :capacity %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="medium-2 columns">
+			<%= f.submit %>
+		</div>
+		<div class="medium-10 columns">
+			<%= link_to "Back", events_path %>
+		</div>
+	</div>
+<% end %>

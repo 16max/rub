@@ -1,0 +1,27 @@
+<table width=100%>
+ <tr>
+ <th> no. </th>
+ <th> id </th>
+ <th> title </th>
+ <th> description </th>
+ <th> start </th>
+ <th> show </th>
+ <th> edit </th>
+ <th> delete </th>
+ </tr>
+ <tr>
+ <% while @i <= @projects.count(:id) do %>
+ <% @projects.each do |p| %>
+ <td> <%= @i %> </td>
+ <td> <%= p.id %> </td>
+ <td> <%= p.title %> </td>
+ <td> <%= p.description %> </td>
+ <td> <%= p.start_date %> </td>
+ <td> <%= link_to 'show' , project_path(p.id) %> </td>
+ <td> <%= link_to 'edit' , edit_project_path(p.id) %> </td>
+ <td> <%= link_to 'delete' , project_path(p.id) , method: :delete , data: {confirm: 'sure?'} %> </td>
+ <% @i += 1 %>
+ </tr>
+ <% end %>
+ <% end %>
+ </table>
