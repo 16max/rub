@@ -2,7 +2,6 @@ class CreateSsps < ActiveRecord::Migration
   def change
     create_table :ssps do |t|
       t.string :pick
-      t.string :c_pick
       t.string :result
 
       t.timestamps null: false

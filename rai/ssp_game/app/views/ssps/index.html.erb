@@ -1,10 +1,44 @@
 <h1> Schere , Stein , Papier </h1>
+<div style=float:left;>
 wähle: 
-<%= link_to image_tag("schere.jpg" , size: "150x100") , root_path(:pick => "Schere") %> - 
-<%= link_to image_tag("stein.jpg" , size: "150x100") , root_path(:pick => "Stein") %> - 
-<%= link_to "Papier" , root_path(:pick => "Papier") %> <br /> <br />
+<%= link_to schere , root_path(:pick => "Schere") %> - 
+<%= link_to stein , root_path(:pick => "Stein") %> - 
+<%= link_to papier , root_path(:pick => "Papier") %> <br /> <br />
 
 deine Wahl: <%= @pick %> <br />
 computer Wahl: <%= @c_pick %> <br /> <br />
 
 <%= win? %>
+</div>
+<table style=margin-left:550px;>
+	<tr>
+		<th>Material</th>
+		<th>Siege</th>
+		<th>Niederlagen</th>
+		<th>Unentschieden</th>
+	</tr>
+	<tr>
+		<td>alle</td>
+		<td><%= @wins %></td>
+		<td><%= @defeats %></td>
+		<td><%= @draws %></td>
+	</tr>
+	<tr>
+		<td>Schere</td>
+		<td><%= @wins_schere %></td>
+		<td><%= @defeats_schere %></td>
+		<td><%= @draws_schere %></td>
+	</tr>
+	<tr>
+		<td>Stein</td>
+		<td><%= @wins_stein %></td>
+		<td><%= @defeats_stein %></td>
+		<td><%= @draws_stein %></td>
+	</tr>
+	<tr>
+		<td>Papier</td>
+		<td><%= @wins_papier %></td>
+		<td><%= @defeats_papier %></td>
+		<td><%= @draws_papier %></td>
+	</tr>
+</table>

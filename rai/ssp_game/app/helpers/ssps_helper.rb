@@ -1,35 +1,25 @@
 module SspsHelper
 
-	def win?
-		case @pick
-		when "Schere"
-			case @c_pick
-			when "Schere"
-				"Unentscheiden"
-			when "Stein"
-				"Niederlage"
-			when "Papier"
-				"Sieg"
-			end
-		when "Stein"
-			case @c_pick
-			when "Schere"
-				"Sieg"
-			when "Stein"
-				"Unentschieden"
-			when "Papier"
-				"Niederlage"
-			end
-		when "Papier"
-			case @c_pick
-			when "Schere"
-				"Niederlage"
-			when "Stein"
-				"Sieg"
-			when "Papier"
-				"Unentschieden"
-			end
-		end
+	def unentschieden
+		@result = "Unentschieden"
+	end
+	def sieg
+		@result = "Sieg"
+	end
+	def niederlage
+		@result = "Niederlage"
+	end
+
+	def schere
+		image_tag("schere.jpg" , size: "150x100")
+	end
+
+	def stein
+		image_tag("stein.jpg" , size: "150x100")		
+	end
+
+	def papier
+		image_tag("papier.jpg" , size: "150x100")
 	end
 
 end

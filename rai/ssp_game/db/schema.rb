@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 1) do
 
   create_table "ssps", force: :cascade do |t|
     t.string   "pick"
-    t.string   "c_pick"
     t.string   "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
