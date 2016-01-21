@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   root "testi#testi"
   get "all" => "projects#showall"
   get "all_tasks" => "tasks#showall"
+
+  get 'signup' => "users#new"
+  get 'signin' => "sessions#new"
+  get 'logout' => "sessions#destroy"
+
+  resources :sessions
+  resources :users
+
   resources :projects do
     resources :tasks
   end

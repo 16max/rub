@@ -1,3 +1,10 @@
-<%= link_to "Schere" , root_path(:pick => "Schere") %>
+<h1> Schere , Stein , Papier </h1>
+wähle: 
+<%= link_to image_tag("schere.jpg" , size: "150x100") , root_path(:pick => "Schere") %> - 
+<%= link_to image_tag("stein.jpg" , size: "150x100") , root_path(:pick => "Stein") %> - 
+<%= link_to "Papier" , root_path(:pick => "Papier") %> <br /> <br />
 
-<%= @pick %>
+deine Wahl: <%= @pick %> <br />
+computer Wahl: <%= @c_pick %> <br /> <br />
+
+<%= win? %>
