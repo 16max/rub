@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def admin?
+    unless current_user.admin?
+        redirect_to request.path, alert: "Darf nur der Admin"
+    end
+  end
+
 end

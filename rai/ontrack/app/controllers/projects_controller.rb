@@ -1,4 +1,8 @@
 class ProjectsController < ApplicationController
+
+	before_action :require_signin, except: [:showall]
+	before_action :admin?, except: [:showall, :show]
+
 	def index
 	end
 

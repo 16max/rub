@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		if user = User.authenticate(params[:email],params[:password])
 			session[:user_id] = user.id
 			flash[:notice] = "Erfolgreich angemeldet!"
-			redirect_to events_path
+			redirect_to all_path
 		else
 			flash.now[:alert] = "Ungültige Anmeldedaten!"
 			render :new
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		session[:user_id] = nil
-		redirect_to root_path, notice: "Erfolgreich ausgelogt."
+		redirect_to all_path, notice: "Erfolgreich ausgelogt."
 	end
 
 end

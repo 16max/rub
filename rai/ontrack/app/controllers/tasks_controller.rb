@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_project
+  before_action :require_signin
+  before_action :admin?, except: [:index]
 
   def index
     @tasks = @project.tasks
@@ -7,11 +9,6 @@ class TasksController < ApplicationController
 
   def show
     @task = @project.tasks.find(params[:id])
-  end
-
-  def showall
-    @tasks = Project.Tasks.all
-    @i = 1
   end
 
   def new

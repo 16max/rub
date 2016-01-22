@@ -2,3 +2,14 @@
 <li class="name"><%= link_to 'projects', projects_path %></li>
 <li class="name"><%= link_to 'all projects', all_path %></li>
 <li class="name"><%= link_to 'new', new_project_path %></li>
+<ul>
+  <div class="right">
+  	<% if current_user %>
+   		<li><%= link_to "logout", logout_path %></li>
+   		<li><%= link_to current_user.name, edit_user_path(current_user.id) %></li>
+   	<% else %>
+   		<li><%= link_to "Account neu", signup_path %></li>
+   		<li><%= link_to "Login", new_session_path %></li>
+   	<% end %> 
+ 	</div>
+ </ul>
