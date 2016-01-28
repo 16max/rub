@@ -1,0 +1,13 @@
+
+<fieldset>
+	<legend> <%= @project.title %> </legend>
+
+	<u> Beschreibung: </u> <br />
+	<%= @project.description %> <br /> <br />
+
+	<u> Beginn: </u> <br />
+	<%= @project.start_date %>
+
+</fieldset> <br />
+
+<%= link_to "zurück" , root_path %>
