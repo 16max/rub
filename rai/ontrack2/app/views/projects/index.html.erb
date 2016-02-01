@@ -19,6 +19,7 @@
 		<td> <%= p.start_date %> </td>
 		<td> <%= link_to "details" , project_path( p.id ) %> </td>
 		<td> <%= link_to "editieren" , edit_project_path( p.id ) %> </td>
+		<td> <%= link_to "löschen" , project_path( p.id ) , method: :delete , data: { confirm: "Wirklich löschen?" } %> </td>
 	</tr>
 
 <% end %>

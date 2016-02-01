@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Project.create( title: "Entwickeln und Programmieren" , description: "Programmieren mit Rails" , start_date: Date.today )
-Project.create( title: "Entwickeln und Programmieren" , description: "Programmieren mit Ruby" , start_date: Date.today )
-Project.create( title: "Linux" , description: "Netacad" , start_date: Date.today )
+Project.create( title: "Prüfung Entwickeln und Programmieren" , description: "Programmieren mit Rails" , start_date: Date.today )
+Project.create( title: "Prüfung Administrieren" , description: "Linux" , start_date: Date.today )
+Project.create( title: "Facharbeit" , description: "alles" , start_date: Date.today )
