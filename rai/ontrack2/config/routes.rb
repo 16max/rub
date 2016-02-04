@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  post 'login' => 'sessions#new'
+
+  resources :sessions
+  
+  resources :users
   root "projects#index"
 
   resources :projects do

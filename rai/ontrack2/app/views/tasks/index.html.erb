@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Listing Tasks</h1>
 
@@ -23,8 +23,8 @@
         <td><%= task.end_date %></td>
         <td><%= task.project_id %></td>
         <td><%= link_to 'Show', project_task_path( task.project_id , task.id ) %></td>
-        <td><%#= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%#= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_project_task_path( task.project_id , task.id ) %></td>
+        <td><%= link_to 'Entferne mich :o', project_task_path( task.project_id , task.id ) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,6 @@
 
 <br>
 
-<%= link_to 'New Task', new_project_task_path( params[ :project_id ] ) %>
+<%= link_to 'New Task', new_project_task_path( params[ :project_id ] ) %> |
+<%= link_to "zurück zu allen Projekten" , projects_path %> |
+<%= link_to "zurück" , project_path( @project.id ) %>
