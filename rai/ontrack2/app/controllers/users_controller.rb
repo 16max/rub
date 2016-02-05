@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_correct_user , only: [ :destroy , :edit , :update ]
 
   # GET /users
   # GET /users.json
@@ -63,6 +64,14 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def require_correct_user
+      @user = User.find( params[ :id ] )
+      unless @user == current_user || current_user.admin?
+        #flash[ :alert ] = "Fehler, falscher User"
+        redirect_to users_path , alert: "Fehler, falscher User"
+      end
+    end
+
     def set_user
       @user = User.find(params[:id])
     end
