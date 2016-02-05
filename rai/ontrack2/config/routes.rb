@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
   
-  post 'login' => 'sessions#new'
-
+  get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
+  get 'registrieren' => 'users#new'
 
-  resources :sessions
-
-  
+  resources :sessions  
   resources :users
   root "projects#index"
 

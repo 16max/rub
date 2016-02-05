@@ -1,0 +1,8 @@
+
+<nav>
+	<% if current_user %>
+		<%= current_user.name %> | <%= link_to "Logout" , logout_path %>
+	<% else %>
+		<%= link_to 'registrieren', registrieren_path %> | <%= link_to "login" , login_path %>
+	<% end %>
+</nav>

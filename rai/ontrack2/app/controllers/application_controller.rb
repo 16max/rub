@@ -9,4 +9,16 @@ class ApplicationController < ActionController::Base
   	@current_user = User.find( session[ :user_id ] ) if session[ :user_id ]
   end
 
+  def require_admin
+  	unless current_user.admin?
+  		redirect_to root_path , alert: "Kein Zugriff"
+  	end
+  end
+
+  def require_signin
+  	unless current_user
+  		redirect_to login_path , alert: "Du musst für diese Aktion angemeldet sein!"
+  	end
+  end
+
 end

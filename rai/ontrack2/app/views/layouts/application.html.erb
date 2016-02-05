@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<%= render "/layouts/navigation" %>
+
 	<% if flash.present? %>
 
 		<% flash.each do |key , value| %>
@@ -15,12 +17,6 @@
 		<% end %>
 
 	<% end %>
-
-<div style="float:right;">
-	<% if current_user %>
-		<%= current_user.name %> | <%= link_to "Logout" , logout_path %>
-	<% end %>
-</div>
 
 <%= yield %>
 
