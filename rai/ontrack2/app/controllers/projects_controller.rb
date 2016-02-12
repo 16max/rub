@@ -1,6 +1,9 @@
 class ProjectsController < ApplicationController
 
-	before_action :set_project , only: [ :destroy , :edit , :show , :update ] 
+	before_action :set_project , only: [ :destroy , :edit , :show , :update ]
+	before_action :require_signin , except: [ :index ]
+	before_action :require_teamleiter , except: [ :index , :show ]
+	before_action :require_admin , only: [ :destroy ]
 
 	def create
 		@project = Project.new( permitted_params )

@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  def require_teamleiter
+    unless current_user.teamleiter? || current_user.admin?
+      redirect_to root_path , alert: "Kein Zugriff, frage deinen Teamleiter!"
+    end
+  end
+
 end
