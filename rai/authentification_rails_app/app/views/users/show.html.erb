@@ -10,5 +10,12 @@
   <%= @user.email %>
 </p>
 
+<p>
+	<strong>an folgenden Events nehme ich teil</strong> <br />
+	<% @user.registrations.each do |r| %>
+		<%= r.event.name %> <br />
+	<% end %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

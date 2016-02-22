@@ -10,13 +10,20 @@
 	</tr>
 <% @registrations.each do |registration| %>
 	<tr>
-		<td><%= registration.name %></td>
-		<td><%= registration.email %></td>
+		<td><%= registration.user.name %></td>
+		<td><%= registration.user.email %></td>
 		<td><%= registration.how_heard %></td>
 		<td><%= registration.event_id %></td>
-		<td></td>
+		<td><%= link_to "<i class='fi-trash muelleimer'></i>".html_safe , event_registration_path(@event.id , registration.id) , method: :delete  %> </td>
 	</tr>
 <% end %>
 </table>
 
-<p><%= link_to "Back", event_path(@event.id) %></p>
+<ul class="button-group">
+	<li><%= link_to "<i class='fi-torso-business gross'></i> User".html_safe , user_path(@current_user.id) , class: "button info big-btn" %></li>
+	<li><%= link_to "<i class='fi-burst-new gross'></i> registrieren".html_safe , new_event_registration_path(@event.id), class: "button info big-btn" %></li>
+	<li>
+		
+		<%= link_to "<i class='fi-arrow-left gross'></i> Back".html_safe, event_path(@event.id), class: "button info big-btn" %>
+	</li>
+</ul>
