@@ -16,6 +16,12 @@
 		<%= r.event.name %> <br />
 	<% end %>
 </p>
-
+<% if @liked_events.any? %>
+			<strong>folgende Events mag ich:</strong>
+			<% @liked_events.each do | liked_events | %>
+				<%= link_to liked_events.name , event_path( liked_events.id ) %> 
+			<% end %>
+<% end %>
+<br />
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

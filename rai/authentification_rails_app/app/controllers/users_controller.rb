@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @liked_events = @user.liked_events
   end
 
   def new

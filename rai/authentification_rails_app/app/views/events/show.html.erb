@@ -1,4 +1,18 @@
 <h1><%= @event.name %></h1>
+<% if @likers.any? %>
+<div class="panel">
+	<div class="row">
+		<div class="medium-2 columns">
+			liked?
+		</div>
+		<div class="medium-10 columns">
+			<% @likers.each do | liker | %>
+				<%= link_to liker.name , user_path( liker.id ) %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<% end %>
 <div class="panel">
 	<div class="row">
 		<div class="medium-3 columns">

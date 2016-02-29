@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 	has_many :registrations, dependent: :destroy
+	has_many :likes , dependent: :destroy
+	has_many :likers , through: :likes , source: :user
 
 	validates :name, presence: { message: "darf nicht leer sein" }
 	validates :desciption, length: { minimum: 25 }
