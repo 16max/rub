@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :likes
+  
   root "events#index"
   # get "/events" => "events#index"
   # get "/events/:id" => "events#show"
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get "showall"
     end
+    resources :likes
     resources :registrations
   end
 

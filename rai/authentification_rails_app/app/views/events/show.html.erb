@@ -13,6 +13,11 @@
 	</div>
 </div>
 <% end %>
+<% if !@liker %>
+	<%= button_to "like" , event_likes_path( @event.id ) %>
+<% else %>
+	<%= button_to "dislike" , event_like_path( @event.id , @current_user.id ) , method: :delete %>
+<% end %>
 <div class="panel">
 	<div class="row">
 		<div class="medium-3 columns">
@@ -54,6 +59,5 @@
 <ul class="button-group">
 	<li><%= link_to "registrierte Member", event_registrations_path(@event.id), class: "button info big-btn" %></li>
 	<li><%= link_to "registrieren", new_event_registration_path(@event.id), class: "button info big-btn" %></li>
-	<li><%= link_to "Back", events_path, class: "button info big-btn" %></li>
 	<li><%= link_to "Edit", edit_event_path(@event.id), class: "button info big-btn" %></li>
 </ul>

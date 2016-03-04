@@ -6,6 +6,10 @@ class EventsController < ApplicationController
 	def show
 		@event = Event.find(params[:id])
 		@likers = @event.likers
+		if current_user
+			@liker = Like.find_by( user_id: current_user.id , event_id: params[ :id ] )
+			#@liker = current_user.likes.find_by( event_id: @event )
+		end
 	end
 
 	def showall
