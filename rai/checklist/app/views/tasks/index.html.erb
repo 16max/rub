@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Checklist</h1>
+
+<div id="form_task">
+  <%= link_to 'New Task', new_task_path , remote: true %>
+</div>
+
+<h2>incomplete tasks</h2>
+<div>
+  <%= render "table" , tasks: @tasks_incomplete %>
+</div>
+
+<h2>complete tasks</h2>
+<div>
+  <%= render "table" , tasks: @tasks_complete %>
+</div>
