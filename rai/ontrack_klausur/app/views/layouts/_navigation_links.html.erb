@@ -1,1 +1,4 @@
 <%# add navigation links to this file %>
+<% unless request.path == "/" || request.path == "/projects/new" || request.path == "/projects" %>
+	<li class="name"><%= link_to 'Employees', project_employees_path( @project ) %></li>
+<% end %>

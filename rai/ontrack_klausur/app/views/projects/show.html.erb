@@ -15,5 +15,34 @@
   <%= @project.start_date %>
 </p>
 
+<% if @project.max_hours %>
+	<p>
+	  <strong>Bisher wurden für das Projekt:</strong>
+	  <%= @project.xxx %> von <%= @project.max_hours %> Stunden verbraucht. Es bleiben <%= @project.zzz %> Stunden.
+	</p>
+<% else %>
+	<p , class="rot">
+	  <strong>Es wurde noch keine maximale Stundenzahl für das Projekt festgelegt!</strong>
+	</p>
+<% end %>
+
+<table>
+	<tr>
+		<th>Employees</th>
+	</tr>
+	<% @project.employees.each do | employee | %>
+	<tr>
+		<td>
+				<%= employee.name %>
+				<%= form_tag( project_employee_worked_hours_path( @project , employee ) , namespace: :worked_hour ) do %>
+					<td><%= select_tag :hours , options_for_select( WorkedHour::WORKED_HOUR_OPTIONS ) %></td>
+					<td><%= submit_tag "Arbeitszeit eintragen" %></td>
+				<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<%= link_to "neuer Mitarbeiter" , new_project_employee_path( @project ) %> |
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root "projects#index"
 
-  resources :projects
+  resources :projects do
+    resources :employees do
+      resources :worked_hours , only: [ :create ]
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
