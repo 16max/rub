@@ -13,7 +13,7 @@
         <td><%= task.name %></td>
         <td><%= task.complete %></td>
         <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td id=<%= task.id %>><%= link_to 'complete', task_path(id: task.id), data: { confirm: "wIRKLICH ABSCHLIEẞEN?" } , method: :patch , remote: true %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
